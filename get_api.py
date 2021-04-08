@@ -2,7 +2,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 """ Getting public and private keys from server. """
-keys = requests.get("http://127.0.0.1:8000/keys", auth=HTTPBasicAuth('bartek', 'pass')).json()
+keys = requests.get("http://0.0.0.0:9000/keys", auth=HTTPBasicAuth('bartek', 'pass')).json()
 pub_key = tuple(keys['pub_key'].values())
 priv_key = tuple(keys['priv_key'].values())
 
@@ -17,7 +17,7 @@ data = {
 }
 
 """Getting encrypted data."""
-encrypt_data = requests.post("http://127.0.0.1:8000/encrypt_data", json=data).json()["result"]
+encrypt_data = requests.post("http://0.0.0.0:9000/encrypt_data", json=data).json()["result"]
 print("Encrypted data:", *encrypt_data)
 
 """Preparing decode model."""
@@ -27,7 +27,7 @@ data = {
 }
 
 """Requesting for decoded data."""
-decode_data = requests.post("http://127.0.0.1:8000/decode_data", json=data).json()["result"]
+decode_data = requests.post("http://0.0.0.0:9000/decode_data", json=data).json()["result"]
 
 """Checking that decoded data is equal to original text."""
 if decode_data == text:
