@@ -1,6 +1,8 @@
 # RSA - Rivest–Shamir–Adleman
 created by: Bartosz Maślanka
 
+[RSA - algorithm](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+
 A python program that creates FastAPI, which allows to encrypt / decode text using API requests.
 To run the API server, user should type in to terminal `hypercorn api:app --reload -b "0.0.0.0:9000"`. 
 When the server is running user can check if the RSA-API works correctly by executing get-api.py which downloads keys, 
