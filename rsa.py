@@ -1,8 +1,9 @@
 from math import sqrt, gcd
 import random
 
-# is_prime fun. checks that number n in prime number
+
 def is_prime(n):
+    """is_prime fun. checks that number n in prime number"""
     if n == 2:
         return True
     if n % 2 == 0 or n <= 1:
@@ -15,25 +16,25 @@ def is_prime(n):
             return False
     return True
 
-# Generate prime numbers from start(0) to end(1000)
 def gen_primes(start=0, end=1000):
+    """Generate prime numbers from start(0) to end(1000)"""
     primes = [i for i in range(start, end) if is_prime(i)]
     return random.sample(primes, 2)
 
-#  Carmichael's totient function.
 def euler_fun(p, q):
+    """Carmichael's totient function."""
     p, q = p - 1, q - 1
     return abs(p * q) // gcd(p, q)
 
-#  Modular multiplicative inverse fun.
 def mod_inverse(a, m):
+    """Modular multiplicative inverse fun."""
     for x in range(1, m):
         if (((a % m) * (x % m)) % m == 1):
             return x
     return -1
 
-# Main key generation
 def gen_key():
+    """Main key generation"""
     p, q = gen_primes()
     n = p * q
     euler_n = euler_fun(p, q)
@@ -44,16 +45,16 @@ def gen_key():
     priv_key = (n, d)
     return pub_key, priv_key
 
-#Encrypt text with pub_key
 def encrypt_rsa(data, pub_key):
+    """Encrypt text with pub_key"""
     n, e = pub_key
     result = []
     for letter in data:
         result.append(ord(letter) ** e % n)
     return result
 
-#Decode text with priv_key
 def decode_rsa(data, priv_key):
+    """Decode text with priv_key"""
     result = ""
     n, d = priv_key
     for i in data:
