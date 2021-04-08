@@ -1,7 +1,5 @@
 import unittest
 import requests
-
-
 import rsa
 
 
@@ -24,8 +22,6 @@ class MyTestCase(unittest.TestCase):
         }
         encrypt_data = rsa.encrypt_rsa(text, (3233,17))
         self.assertEqual(requests.post("http://127.0.0.1:8000/encrypt_data",json=data).json()["result"],encrypt_data)
-
-
 
 
 if __name__ == '__main__':
